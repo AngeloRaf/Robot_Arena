@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Robot Arena — Panneau de contrôle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Barlow+Condensed:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <!-- ── En-tête ─────────────────────────────────────────────────── -->
+  <header class="hdr">
+    <div class="hdr-left">
+      <span class="logo-dot" id="logo-dot"></span>
+      <span class="hdr-title">ROBOT ARENA</span>
+      <span class="hdr-sub">PANNEAU DE CONTRÔLE v1.0</span>
+    </div>
+    <div class="hdr-right">
+      <div class="conn-indicator" id="conn-dot"></div>
+      <span class="conn-label" id="conn-label">CONNEXION…</span>
+      <span class="hdr-clock" id="clock">--:--:--</span>
+    </div>
+  </header>
+
+  <!-- ── Corps principal ──────────────────────────────────────────── -->
+  <main class="layout">
+
+    <!-- Flux vidéo -->
+    <section class="panel panel--video">
+      <div class="panel-label">FLUX CAMÉRA</div>
+      <div class="video-wrap">
+        <img id="video-stream" src="/video_feed" alt="Flux caméra">
+        <div class="video-overlay" id="video-overlay">
+          <span class="overlay-text" id="overlay-msg">INITIALISATION…</span>
+        </div>
+        <!-- Réticule de ciblage -->
+        <div class="reticle" id="reticle">
+          <div class="ret-h"></div>
+          <div class="ret-v"></div>
+          <div class="ret-ring"></div>
+        </div>
+        <!-- Indicateur de proximité -->
+        <div class="prox-bar-wrap">
+          <div class="prox-label">PROXIMITÉ</div>
+          <div class="prox-track">
+            <div class="prox-fill" id="prox-fill"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Panneau droit -->
+    <aside class="panel panel--controls">
+
+      <!-- Couleur active — bandeau hero -->
+      <div class="color-hero" id="color-hero">
+        <div class="color-hero-name" id="color-hero-name">AUCUNE</div>
+        <div class="color-hero-swatch" id="color-hero-swatch"></div>
+      </div>
+
+      <!-- État de la FSM -->
+      <div class="ctrl-section">
+        <div class="panel-label">ÉTAT DU ROBOT</div>
+        <div class="state-display" id="state-display">
+          <div class="state-icon" id="state-icon"></div>
+          <div class="state-text" id="state-text">---</div>
+        </div>
+      </div>
+
+      <!-- Détection cible -->
+      <div class="ctrl-section">
+        <div class="panel-label">DÉTECTION CIBLE</div>
+        <div class="target-row">
+          <div class="target-pill" id="target-pill">
+            <span class="pill-dot" id="pill-dot"></span>
+            <span id="pill-text">RECHERCHE…</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sélection de couleur -->
+      <div class="ctrl-section">
+        <div class="panel-label">SÉLECTION COULEUR</div>
+        <div class="color-grid">
+          <button class="btn-color" data-color="red" id="btn-red">
+            <span class="btn-dot-color btn-dot-red"></span>
+            ROUGE
+          </button>
+          <button class="btn-color" data-color="blue" id="btn-blue">
+            <span class="btn-dot-color btn-dot-blue"></span>
+            BLEU
+          </button>
+          <button class="btn-color" data-color="yellow" id="btn-yellow">
+            <span class="btn-dot-color btn-dot-yellow"></span>
+            JAUNE
+          </button>
+          <button class="btn-color" data-color="green" id="btn-green">
+            <span class="btn-dot-color btn-dot-green"></span>
+            VERT
+          </button>
+        </div>
+      </div>
+
+      <!-- Bouton STOP -->
+      <div class="ctrl-section stop-section">
+        <button class="btn-stop" id="btn-stop">
+          <span class="stop-icon">■</span>
+          ARRÊT D'URGENCE
+        </button>
+      </div>
+
+      <!-- Télémétrie -->
+      <div class="ctrl-section">
+        <div class="panel-label">TÉLÉMÉTRIE</div>
+        <div class="telem-grid">
+          <div class="telem-item">
+            <div class="telem-label">POSITION X</div>
+            <div class="telem-val" id="tel-x">—</div>
+          </div>
+          <div class="telem-item">
+            <div class="telem-label">AIRE CIBLE</div>
+            <div class="telem-val" id="tel-area">—</div>
+          </div>
+          <div class="telem-item">
+            <div class="telem-label">MODE</div>
+            <div class="telem-val" id="tel-mode">—</div>
+          </div>
+          <div class="telem-item">
+            <div class="telem-label">LATENCE</div>
+            <div class="telem-val" id="tel-ping">—</div>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+  </main>
+
+  <!-- Notification toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
